@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+  <br>
+  <nav class="navbar navbar-dark bg-dark justify-content-between">
+    <a class="navbar-brand" href="{% url 'index' %}">Kino sayt</a>
+    <a class="navbar-brand" href="{% url 'addkino' %}">TMDB</a>
+    <a class="navbar-brand" href="{% url 'videocdn' %}">VIDEOCDN</a>
+    <a class="navbar-brand" href="{% url 'delete1' %}">Kinonu sil</a>
+    <a class="navbar-brand" href="http://127.0.0.1:8000/yenikino/">flimler</a>
+
+
+
+    <form class="form-inline">
+      {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </nav>
+</div>
+  
+    <br><br>
+
+
+  <div class="container">
+    <div class="row">
+      <div >Bazada <b>{{ nsay }}</b> xeber var </div>
+        <table class="table">
+          <thead>
+            
+            <th>№</th>
+
+            <th >Kino adi</th>
+            <th >ID</th>
+            <th >Melumat</th>
+            <th >Kateqoriya</th>
+            <th >il</th>
+            <th >Reytinq</th>
+            <th >Foto</th>
+            <th >Poster</th>
+            <th >Dil</th>
+            <th>Video</th>
+            <th>Company</th>
+ 
+            
+          </thead>
+
+          <tbody> 
+            {% for x in blok %}
+
+            <tr >
+              <td> {{ forloop.counter }}</td> 
+              <td >{{ x.ad }}</td>
+              <td >{{ x.id }}
+                <a class="btn btn-danger btn-sm" href="http://127.0.0.1:8000/delete/{{ x.id }}">Sil</a>
+              </td>
+              <td >{{ x.melumat }}</td>
+              
+              
+              <td >{{ x.kateqoriya }}</td>
+              <td >{{ x.il }}</td>
+              <td >{{ x.reytinq }}</td>
+              <td >{{ x.foto }}</td>
+              <td >{{ x.poster }}</td>
+              <td >{{ x.dil }}</td>
+              <td >{{ x.video_link }}</td>
+              <td>{{x.company}}</td>
+              
+
+            </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
